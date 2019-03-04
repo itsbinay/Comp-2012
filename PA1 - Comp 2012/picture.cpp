@@ -59,10 +59,10 @@ Picture::Picture(const char* filename){
 }
 //------------------------------------------------------------------------------
 Picture::Picture(const Picture_Pair& pp){
-    if(pp[0]==nullptr && pp[1]==nullptr){	//Create a blank picture using default values
+    if(pp.get_picture(0)==nullptr && pp.get_picture(1)==nullptr){	//Create a blank picture using default values
     	return;
     }
-    else if(pp[0]==nullptr){
+    else if(pp.get_picture(0)==nullptr){
     	this->height=(pp.get_picture(1))->height;
     	this->width=(pp.get_picture(1))->width;
 
@@ -77,7 +77,7 @@ Picture::Picture(const Picture_Pair& pp){
     		}
     	}
     }
-    else if(pp[1]==nullptr){
+    else if(pp.get_picture(1)==nullptr){
     	this->height=(pp.get_picture(0))->height;
     	this->width=(pp.get_picture(0))->width;
 
@@ -93,12 +93,13 @@ Picture::Picture(const Picture_Pair& pp){
     	}
     }
     else{
-    	//Get the maximum dimensions
+    	//Get the maximum height
     	for(int i=0;i<2;i++){
     		if(this->height<=(pp.get_picture(i))->height){
     			this->height=pp.get_picture(i)->height;
     		}
     	}
+    	//Maximum width= combination of the width of the two pictures
     	this->width=(pp.get_picture(0)->width)+(pp.get_picture(1)->width);
 
     	pix=new char*[height];
@@ -106,7 +107,37 @@ Picture::Picture(const Picture_Pair& pp){
     		pix[i]=new char[width];
     	}
 
+    	//Updating the first picture into the new pix
+    	for(int row=0;row<height;row++){
+    		if(row<pp.get_picture(0)->height){
+    			for(int col=0;col<pp.get_picture(0)->width;col++){
+    				pix[row][col]=pp.get_picture(0)->pix[row][col];
+    			}
+    		}
+    		else{
+    			for(int col=0;col<pp.get_picture(0)->width;col++){
+    				pix[row][col]=SPACE;
+    			}
+    		}
+    	}
+
+    	for(int row=0;row<height;row++){
+    		if(row<pp.get_picture(1)->height){
+    			for(int col=pp.get_picture(0)->width;col<width;col++){
+    				pix[row][col]=pp.get_picture(1)->pix[row][col-pp.get_picture(0)->width];
+
+    			}
+    		}
+    		else{
+    			for(int col=pp.get_picture(0)->width;col<width;col++){
+    				pix[row][col]=SPACE;
+    			}
+    		}
+    	}
+
+
     }
+
 }
 //------------------------------------------------------------------------------
 void Picture::draw()const{
@@ -120,24 +151,46 @@ void Picture::draw()const{
 //------------------------------------------------------------------------------
 void Picture::frame(char symbol,int frame_width){
 	if(frame_width<=0){	//Exit the function if the frame width is too small
-		//cout<<"Entered this line"<<endl;
 		return;
 	}
 	else{
+
+		char ** temp{nullptr};
+		temp=new char*[height+frame_width*2];
+		for(int i=0;i<(height+frame_width*2);i++){
+			temp[i]=new char[width+frame_width*2];
+		}
+
+		//Deep copy of the element
 		for(int row=0;row<(height+frame_width*2);row++){
-			for(int col=0;col<=(height+frame_width*2);col++){
+			for(int col=0;col<(width+frame_width*2);col++){
 				if(row<frame_width || row>=(height+frame_width)){//For the first(n-frame width) rows and the last rows
-					cout<<symbol;
+					temp[row][col]=symbol;
 				}
 				else if(col<frame_width || col>=(width+frame_width)){
-					cout<<symbol;
+					temp[row][col]=symbol;
 				}
 				else{
-					cout<<pix[row-frame_width][col-frame_width];
+					temp[row][col]=pix[row-frame_width][col-frame_width];
 				}
 			}
-			cout<<endl;	//New line after every row
 		}
+
+		//Deallocate the old memory
+		for(int row=0;row<this->height;row++){
+		    delete []pix[row];
+		    pix[row]=nullptr;
+		}
+
+		delete []pix;
+
+		//Allocate the frame memory to pix
+		pix=temp;
+		temp=nullptr;
+
+		//Update the class's height and width
+		height=height+frame_width*2;
+		width=width+frame_width*2;
 	}
 }
 //------------------------------------------------------------------------------

@@ -25,7 +25,6 @@ void test_Picture03()
 {
 
 	Picture p1 {"a45.txt"};
-	cout<<"this line has been executed"<<endl;
 	Picture p2 {p1};
 
 	p1.frame('#', 1);

@@ -2,7 +2,6 @@
 #include "picture_pair.h"
 
 Picture_Pair::Picture_Pair(const Picture_Pair& pp){
-	cout<<"This function body can be entered"<<endl;
 	this->pp[0]=pp.get_picture(0);
 	this->pp[1]=pp.get_picture(1);
 };
