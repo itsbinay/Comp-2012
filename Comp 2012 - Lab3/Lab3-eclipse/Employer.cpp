@@ -25,6 +25,6 @@ void Employer::hire(Employee *employee) {
     // increment the number of employees
     // print "{name of employer} hires {name of employee}."
     this->employee[num_of_employee]=employee;
-    cout<<this->get_name()<<" hires "<<employee->get_name()<<endl;
+    cout<<this->get_name()<<" hires "<<employee->get_name()<<"."<<endl;
     this->num_of_employee++;
 }
