@@ -4,12 +4,15 @@
 
 #include "Person.h"
 #include <string>
+using namespace std;
+
 class Employee: public Person
 {
 private:
     int salary;
 public:
     Employee(string name, int salary);
+    int get_salary() const;
 };
 
 #endif

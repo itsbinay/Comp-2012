@@ -11,10 +11,10 @@ using namespace std;
 class Employer : public Person
 {
 private:
-    Employee* [NUM_MAX_EMPLOYEE]{}
+    Employee* employee[NUM_MAX_EMPLOYEE];
     int num_of_employee;
 public:
-    Employer(string name):Person(name){}
+    Employer(string name);
     
     void pay_salary();
     void hire(Employee *employee);
