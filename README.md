@@ -9,3 +9,13 @@ Grading Scheme:
 | Quiz                          | 5%             |
 | Midterm Examination           | 25%            |
 | Final Examination             | 36%            |
+
+| Item | Percentage |
+|---------|-------|
+| Programming Assignment 1(PA1)  |  6%  | 
+| Programming Assignment 2(PA2)  |  9%  | 
+| Programming Assignment 3(PA3)  |  9%  | 
+| Lab exercises  |  10%  | 
+| Quiz  |  5%  | 
+| Midterm Examination  |  25%  | 
+| Final Examination  |  36%  | 
