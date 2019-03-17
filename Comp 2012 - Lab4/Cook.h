@@ -8,7 +8,7 @@ private:
 public:
 	Cook(std::string _name);
 	std::string get_name() const;
-	void self_intro() const;
+	virtual void self_intro() const;
 };
 
 #endif /* COOK_H_ */

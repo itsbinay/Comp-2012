@@ -7,7 +7,7 @@ class Store{
 
 public:
 	Store();
-	void hire(Cook cook) const;
+	void hire(Cook& cook) const;
 };
 
 #endif /* STORE_H_ */
