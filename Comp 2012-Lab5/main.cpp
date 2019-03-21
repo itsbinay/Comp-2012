@@ -15,3 +15,10 @@ int main(int argc, char **argv)
 
 	return 0;
 }
+/*
+ D:B
+ B* ptr = new D();
+ 
+ delete ptr; <------
+ 
+ */

@@ -7,14 +7,15 @@ public:
 
 	Employee(const char* name);
 
-	~Employee();
+	virtual ~Employee();
 
-	void print_description() const;
+	virtual void print_description() const;
 
-	void print_salary() const;
+	virtual void print_salary() const=0;
 
 private:
 	char* name;
+	int salary;
 };
 
 #endif
