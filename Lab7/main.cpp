@@ -86,6 +86,5 @@ int main() {
     cout << "Pre-increment twice." << endl;
     ++++vec2;
     cout << vec2 << endl;
-
     return 0;
 }
