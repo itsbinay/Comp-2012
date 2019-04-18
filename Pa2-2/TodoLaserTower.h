@@ -11,6 +11,7 @@
 #include "Tower.h"
 
 class TodoLaserTower:public Tower{
+  friend class Object;
 public:
   TodoLaserTower(int,int);
   ~TodoLaserTower();

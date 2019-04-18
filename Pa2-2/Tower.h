@@ -13,7 +13,7 @@
 class Enemy;
 
 /**
- * Tower is an abstract base class of other type of towers.
+ * Tower is an abstract base class of other type of towers. 
  * The member functions are explained as below.
  *
  */
@@ -23,7 +23,7 @@ public:
 	//The second parameter is the upgrade cost
 	//The third parameter is the power
 	Tower(int, int, int);
-
+	
 	virtual ~Tower();
 
 	//Return the building cost of the tower.
@@ -45,10 +45,10 @@ public:
 	virtual ObjectType getObjectType() const override {return ObjectType::TOWER; };
 
 	//To upgrade a tower. A tower will increase its power by the value 1 after each upgrade.
-	//You need to pay the upgrade cost to upgrade an tower.
+	//You need to pay the upgrade cost to upgrade an tower. 
 	virtual void upgrade();
 
-	//When an enemy is killed some money will be generated at the Tower.
+	//When an enemy is killed some money will be generated at the Tower. 
 	//this function will return the money to and reset this value to 0.
 	int collectMoney();
 

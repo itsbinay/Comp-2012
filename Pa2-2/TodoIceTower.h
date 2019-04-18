@@ -11,6 +11,7 @@
 #include "Tower.h"
 #include "Enemy.h"
 class TodoIceTower: public Tower{
+  friend class Object;
 public:
   TodoIceTower(int,int);
   ~TodoIceTower();

@@ -196,10 +196,9 @@ void Arena::addBuilding(int building, int x, int y) {
 void Arena::nextRound() {
 //TODO
 	/*** The following code is to make the tower shoot - STEP1 ***/
-
 	for(int i=0;i<this->num_objects;++i){//Make the tower shoot first
 		//This is done to find the tower first
-		if(this->objects[i]->getObjectType()==ObjectType::ENEMY)continue;
+		if(this->objects[i]->getObjectType()==ObjectType::ENEMY)return;
 		for(int j=0;j<this->num_objects;++j){
 			if((i==j) || this->objects[j]->getObjectType()==ObjectType::TOWER || this->objects[j]==nullptr)continue;
 			int objX,objY;
@@ -212,7 +211,6 @@ void Arena::nextRound() {
 	}
 
 	/*** The following code is to make the enemy move - STEP2 ***/
-
 	for(int i=0;i<this->num_objects;++i){
 		if(this->objects[i]->getObjectType()==ObjectType::TOWER)continue;
 		dynamic_cast<Enemy*>(this->objects[i])->move();
@@ -222,17 +220,12 @@ void Arena::nextRound() {
 	generateEnemy();
 
 	/*** Clean up all of the dead enemy and tower that was destroyed by the enemy ***/
-
 	for(int i=0;i<this->num_objects;++i){ //Remove Enemy
 		//If it isn't an enemy
 		if(this->objects[i]==nullptr)continue;
 
 		if(this->objects[i]->getObjectType()==ObjectType::ENEMY){
-			if(this->objects[i]->getState()==ObjectState::DEAD){
-				this->removeObject(this->objects[i]);
-				this->money++;
-				this->enemy_kill++;
-			}
+			if(this->objects[i]->getState()==ObjectState::DEAD)this->removeObject(this->objects[i]);
 		}
 		else if(this->objects[i]->getObjectType()==ObjectType::TOWER){
 			int TowX,TowY;
