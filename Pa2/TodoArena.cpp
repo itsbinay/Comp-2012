@@ -193,6 +193,34 @@ void Arena::addBuilding(int building, int x, int y) {
 //
 //The amount of money will be increased by the enemies killed in this turn.
 //(*noted: if a RevivingEnemy revive, money will not be added)
+bool returnEnemiesInRange(Object** enemyobj,int count,const Tower* curTower,int& LowIndex){
+	//This function will return be the index of the nearest enemy of the corresponding tower
+	int lowestIndex;
+	int shortestDistance=9999;
+	int towerX,towerY;
+	curTower->getXY(towerX,towerY);
+	bool foundEnemyInRange=false;
+	for(int i=0;i<count;++i){
+		//If it isn't an enemy ignore it
+		if(enemyobj[i]->getObjectType()!=ObjectType::ENEMY)continue;
+		int enemyX,enemyY;
+		enemyobj[i]->getXY(enemyX,enemyY);
+		if(curTower->isInRange(enemyX,enemyY)){	//If the enemy is in range
+			int range=abs(towerX-enemyX)+abs(towerY-enemyY);
+			if(range<shortestDistance){
+				lowestIndex=i;
+				shortestDistance=range;
+			}
+			foundEnemyInRange=true;
+		}
+	}
+	if(!foundEnemyInRange){
+		return false;
+	}else{
+		LowIndex=lowestIndex;
+		return true;
+	}
+}
 void Arena::nextRound() {
 //TODO
 	/*** The following code is to make the tower shoot - STEP1 ***/
@@ -200,15 +228,21 @@ void Arena::nextRound() {
 	for(int i=0;i<this->num_objects;++i){//Make the tower shoot first
 		//This is done to find the tower first
 		if(this->objects[i]->getObjectType()==ObjectType::ENEMY)continue;
+		int closestIndex;
+		if(returnEnemiesInRange(this->objects,num_objects,dynamic_cast<Tower*>(objects[i]),closestIndex)){
+			dynamic_cast<Tower*>(this->objects[i])->fire(*dynamic_cast<Enemy*>(this->objects[closestIndex]));
+		}
+		/*
 		for(int j=0;j<this->num_objects;++j){
 			if((i==j) || this->objects[j]->getObjectType()==ObjectType::TOWER || this->objects[j]==nullptr)continue;
 			int objX,objY;
 			this->objects[j]->getXY(objX,objY);
+
 			if(dynamic_cast<Tower*>(this->objects[i])->isInRange(objX,objY)){
 				dynamic_cast<Tower*>(this->objects[i])->fire(*dynamic_cast<Enemy*>(this->objects[j]));
 				break;
 			}
-		}
+		}*/
 	}
 
 	/*** The following code is to make the enemy move - STEP2 ***/

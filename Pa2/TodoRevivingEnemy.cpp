@@ -23,3 +23,6 @@ void TodoRevivingEnemy::fired(int power){
 char TodoRevivingEnemy::getSymbol() const{
   return 'R';
 }
+string TodoRevivingEnemy::getName() const{
+  return "Reviving Enemy";
+}

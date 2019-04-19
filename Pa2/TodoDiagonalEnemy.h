@@ -14,9 +14,10 @@ public:
   TodoDiagonalEnemy(int,int,int);
   ~TodoDiagonalEnemy();
   char getSymbol() const override;
+  string getName() const override;
   void move() override;
 private:
-  bool changeDIR;
+  bool reachedTop;
 };
 
 #endif /* TODODIAGONALENEMY_H_ */

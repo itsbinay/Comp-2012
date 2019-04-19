@@ -15,6 +15,7 @@ public:
   ~TodoRevivingEnemy();
   char getSymbol() const override;
   void fired(int) override;
+  string getName() const override;
   //The move function is the same as the enemy class
 private:
   bool dead_before=false;

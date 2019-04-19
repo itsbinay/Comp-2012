@@ -8,10 +8,10 @@
 #include "TodoDiagonalEnemy.h"
 
 TodoDiagonalEnemy::TodoDiagonalEnemy(int hp,int x,int y):Enemy(hp,x,y){
-  if(y<0) //If the initial y_coord is less than 0
-    changeDIR=false;
+  if(y<=0) //If the initial y_coord is less than 0
+    reachedTop=false;
   else
-    changeDIR=true;
+    reachedTop=true;
 }
 
 TodoDiagonalEnemy::~TodoDiagonalEnemy(){
@@ -27,15 +27,18 @@ void TodoDiagonalEnemy::move(){
     return;
   }
   getXY(objX,objY);
-  if(objY<0 && !changeDIR){ //And hasn't changed direction
+  if(reachedTop){ //Go Downward
     setXY(objX+1,objY-1);
-    if(objY+1==0)changeDIR=true;  //Change direction
-  }else{
+    if(objY-1==0)reachedTop=false;
+  }else{//Go Upward
     setXY(objX+1,objY+1);
-    if(objY-1==ARENA_H)changeDIR=false;
+    if(objY+1>=ARENA_H-1)reachedTop=true;
   }
 }
 
 char TodoDiagonalEnemy::getSymbol() const{
   return 'D';
+}
+string TodoDiagonalEnemy::getName() const{
+  return "Diagonal Enemy";
 }
