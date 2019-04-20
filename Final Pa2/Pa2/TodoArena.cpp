@@ -77,14 +77,17 @@ Object* Arena::getObjectAt(int aX, int aY) const {
 //x-coordinate >= the constant TOWER_X.
 bool Arena::isGameOver() const {
 //TODO
-	for(int i=0;i<num_objects;++i){
-		int objX,objY;
+	for(int i=0;i<this->num_objects;++i){
+		if(this->objects[i]->getObjectType()!=ObjectType::ENEMY){continue;}
+		int objX=0,objY=0;
 		this->objects[i]->getXY(objX,objY);
 		//if any enemy
-		if(objX>=TOWER_X && (this->objects[i]->getObjectType()==ObjectType::ENEMY
-		&& this->objects[i]->getState()!=ObjectState::DEAD))return true;
+		if(objX>=TOWER_X && this->objects[i]-> getState()!=ObjectState::DEAD){
+			return true;
+		}
 	}
 	return false;
+
 }
 
 
@@ -232,17 +235,6 @@ void Arena::nextRound() {
 		if(returnEnemiesInRange(this->objects,num_objects,dynamic_cast<Tower*>(objects[i]),closestIndex)){
 			dynamic_cast<Tower*>(this->objects[i])->fire(*dynamic_cast<Enemy*>(this->objects[closestIndex]));
 		}
-		/*
-		for(int j=0;j<this->num_objects;++j){
-			if((i==j) || this->objects[j]->getObjectType()==ObjectType::TOWER || this->objects[j]==nullptr)continue;
-			int objX,objY;
-			this->objects[j]->getXY(objX,objY);
-
-			if(dynamic_cast<Tower*>(this->objects[i])->isInRange(objX,objY)){
-				dynamic_cast<Tower*>(this->objects[i])->fire(*dynamic_cast<Enemy*>(this->objects[j]));
-				break;
-			}
-		}*/
 	}
 
 	/*** The following code is to make the enemy move - STEP2 ***/

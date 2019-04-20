@@ -35,7 +35,7 @@ int Tower::getUpgradeCost() const {
 }
 
 
-//Code updated at 1/4/2019.
+//Code updated at 1/4/2019. 
 void Tower::fire(Enemy& enemy) {
     int x, y;
     enemy.getXY(x, y);
