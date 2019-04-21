@@ -11,7 +11,7 @@ const int SIMPLE_TOWER_COST = 1;
 const int SIMPLE_TOWER_UPGRADE_COST = 1;
 const int SIMPLE_TOWER_POWER = 3;
 
-TodoSimpleTower::TodoSimpleTower(int x, int y):Tower(SIMPLE_TOWER_COST,SIMPLE_TOWER_UPGRADE_COST,SIMPLE_TOWER_UPGRADE_COST){
+TodoSimpleTower::TodoSimpleTower(int x, int y):Tower(SIMPLE_TOWER_COST,SIMPLE_TOWER_UPGRADE_COST,SIMPLE_TOWER_POWER){
   this->setXY(x,y);
 }
 TodoSimpleTower::~TodoSimpleTower(){}

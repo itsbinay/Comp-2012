@@ -6,7 +6,7 @@
  */
 
 #include "TodoCatapult.h"
-#include <math.h>
+
 const int TODO_CATAPULT_COST = 2;
 const int TODO_CATAPULT_UPGRADE_COST = 2;
 const int TODO_CATAPULT_POWER = 5;
@@ -21,7 +21,11 @@ TodoCatapult::~TodoCatapult(){
 bool TodoCatapult::isInRange(int x, int y) const{
   int objX=0,objY=0;
   this->getXY(objX,objY);
-  int difference=abs(objX-x)+abs(objY-y);
+  int xsqr=objX-x;
+  int ysqr=objY-y;
+  if(xsqr<0){xsqr*=-1;}
+  if(ysqr<0){ysqr*=-1;}
+  int difference=xsqr+ysqr;
 
   if(difference==catapultRange)
     return true;

@@ -209,7 +209,11 @@ bool returnEnemiesInRange(Object** enemyobj,int count,const Tower* curTower,int&
 		int enemyX,enemyY;
 		enemyobj[i]->getXY(enemyX,enemyY);
 		if(curTower->isInRange(enemyX,enemyY)){	//If the enemy is in range
-			int range=abs(towerX-enemyX)+abs(towerY-enemyY);
+			int xsqr=towerX-enemyX;
+			int ysqr=towerY-enemyY;
+			if(xsqr<0){xsqr*=-1;}
+			if(ysqr<0){ysqr*=-1;}
+			int range=xsqr+ysqr;
 			if(range<shortestDistance){
 				lowestIndex=i;
 				shortestDistance=range;
