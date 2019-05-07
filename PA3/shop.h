@@ -10,7 +10,7 @@
 #include <string>
 using std::string;
 
-//a shop 
+//a shop
 //it uses a hash table as its inventory
 class Shop
 {
@@ -41,7 +41,7 @@ public:
 
     //add an amount (quantity) of a product specified by the name
     //there are two cases
-    //1. if the product is already in the inventory, simply add the quantity to the inventory 
+    //1. if the product is already in the inventory, simply add the quantity to the inventory
     //by updating the existing product entry in the inventory, the given price can be ignored in this case
     //return true at the end
     //2. otherwise, add the new product to the inventory with the given quantity and price

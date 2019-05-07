@@ -9,7 +9,7 @@
 
 //a mall
 //a BST is usd to store the shops
-class Mall 
+class Mall
 {
 private:
     string name; //the mall name
@@ -23,7 +23,7 @@ public:
     //if an existing shop has the same name as the given name, do nothing and return false
     //otherwise, add the shop and return true
     //all shops use LINEAR mode for collision resolving and have initial hash table sizes of 7
-    //and they should use the hash function shown in "How to Deal with String Keys: Method 3" 
+    //and they should use the hash function shown in "How to Deal with String Keys: Method 3"
     //(page 14 of the Hashing lecture slides)
     //you can assume the given name has English letters only,
     //and that we would treat lowercase letters and uppercase letters the same

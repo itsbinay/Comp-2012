@@ -22,7 +22,7 @@ enum class Mode
 //open addressing and lazy deletion are always used (see lecture notes)
 //however, the collision resolving is customizable
 template <typename K, typename T>
-class HashTable 
+class HashTable
 {
 private:
     enum class CellStatus
@@ -56,13 +56,13 @@ private:
                     //again, this also doesn't include the "mod m" part
 
     int count; //count of active cells (existing and not deleted) in the table, should be 0 initially
-    
+
     double loadLimit; //load limit, see the add function description and webpage description
 
 public:
     //constructor
     //initialize all data members including the dynamic array
-    HashTable(int m, int (*h)(K), int (*h2)(K), Mode mode, double loadLimit); 
+    HashTable(int m, int (*h)(K), int (*h2)(K), Mode mode, double loadLimit);
 
     //deep copy constructor
     HashTable(const HashTable& another);
@@ -70,7 +70,7 @@ public:
     //destructor
     //you must delete (i.e. deallocate) all the data inside all the Cells here
     ~HashTable();
-    
+
     //deep assignment
     HashTable& operator=(const HashTable& another);
 
@@ -107,7 +107,7 @@ public:
             else if(table[i].status == CellStatus::DELETED)
                 os << "[Deleted]";
 
-            if(i!=m-1) 
+            if(i!=m-1)
                 os << " | ";
         }
         os << std::endl;

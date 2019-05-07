@@ -47,7 +47,7 @@ std::ostream& operator<<(std::ostream& os, const Mode& m)
         case Mode::LINEAR:
             os << "LINEAR";
             break;
-            
+
         case Mode::DOUBLE:
             os << "DOUBLE";
             break;
@@ -93,7 +93,7 @@ int main()
         bst2.add("d", 44);
         bst2.add("b", 22);
         bst2.add("f", 66);
-        bst2.add("Z", 1); 
+        bst2.add("Z", 1);
         //note: "Z" is actually smaller than "a" when you do string comparison
         //and that is the order we use for ordering the items in our BST
         //for example:
@@ -130,6 +130,7 @@ int main()
         HashTable<int, int> ht(7, fun, fun2, mode, 0.5);
         cout << "empty table:" << endl;
         cout << ht << endl;
+
         for(int i=0; i<sizeof(values)/sizeof(int); i++)
         {
             cout << "add {" << keys[i] << "," << values[i] << "}: collisions=" << ht.add(keys[i], new int(values[i])) << endl;
@@ -139,7 +140,7 @@ int main()
         for(int k: keys)
         {
             int* p = ht.get(k);
-            if(p) 
+            if(p)
                 cout << "found (" << k << "," << *p << ")" << endl;
             else
                 cout << "not found key " << k << endl;
@@ -176,7 +177,7 @@ int main()
     delete pht2;
 
     cout << "=================== Shop Tests ===================" << endl;
-    { 
+    {
         int (*fun3)(string) = [](string s){return 5 - ((int)s.length()) % 5;};
 
         Shop* mcRonald = new Shop("McRonald", 7, fun3, fun3, Mode::LINEAR, 0.5);
@@ -185,20 +186,24 @@ int main()
         mcRonald->printDetails(cout);
         cout << "sellProduct: " << mcRonald->sellProduct("Fries", 400) << endl;
         mcRonald->printDetails(cout);
-        
+
+
         cout << "MAGICAL CLONE!" << endl;
         Shop* mcRonaldTwo = new Shop(*mcRonald);
         mcRonaldTwo->printDetails(cout);
 
+
         cout << "Move it!" << endl;
+
+
         Shop mcRonaldThree = move(*mcRonald);
         mcRonaldThree.printDetails(cout);
+
         cout << "mcRonald is " << mcRonald->getName() << "!" << endl;
 
         delete mcRonald;
         delete mcRonaldTwo;
     }
-    
     cout << "=================== Mall Tests ===================" << endl;
     {
         Mall m1("Junk Food Nation");
@@ -232,6 +237,5 @@ int main()
     }
 
     cout << endl << "Done! Hopefully there is no memory leak..." << endl;
-
     return 0;
 }
