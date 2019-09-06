@@ -11,5 +11,6 @@ Grading Scheme:
 | Lab exercises  |  10%  | 10%  | |
 | Quiz  |  5%  | 4.2% |  |
 | Midterm Examination  |  25%  | 16.88% | |
-| Final Examination  |  36%  |   | |
-| Total | 100% | 54.41% | |
+| Final Examination  |  36%  | 26.64%  | |
+| Total | 100% | 81.05% | |
+
