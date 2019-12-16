@@ -51,7 +51,7 @@ bool BST<T>::remove(string key){
     return a;
   }
   else if((!root->left.isEmpty()) && (!root->right.isEmpty())){//Found node has two children
-    root->key=root->right.findMin()->root->key;  //Copy the right value to the current node
+    root->ke`y=root->right.findMin()->root->key;  //Copy the right value to the current node
     root->value=root->right.findMin()->root->value;
     return root->right.remove(root->key);
   }
